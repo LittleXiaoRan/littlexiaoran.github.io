@@ -100,6 +100,54 @@
       box-shadow: 0 0 12px #79d5ff44;
     }
 
+    main {
+      padding: 12px clamp(24px, 5vw, 72px) 64px;
+    }
+
+    .game-card {
+      width: 100%;
+      max-width: 420px;
+      padding: clamp(24px, 4vw, 36px);
+      border: 1px solid #89d9ff33;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #143354d9, #101e38e6);
+      box-shadow: 0 20px 60px #020a1a40;
+    }
+
+    .game-card h2 {
+      margin: 0 0 28px;
+      color: #e0f5ff;
+      font-size: clamp(24px, 4vw, 32px);
+      line-height: 1.4;
+      letter-spacing: 0.06em;
+    }
+
+    .play-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      min-height: 48px;
+      padding: 12px 24px;
+      border: 1px solid #b6e8ff;
+      border-radius: 12px;
+      color: #07152d;
+      background: linear-gradient(110deg, #a2e2ff, #b8b8ff);
+      font-size: 16px;
+      font-weight: 650;
+      line-height: 1.5;
+      text-decoration: none;
+    }
+
+    .play-link:hover {
+      background: #d3eeff;
+    }
+
+    .play-link:focus-visible {
+      outline: 3px solid #e0f5ff;
+      outline-offset: 5px;
+    }
+
     @keyframes drift {
       from { transform: translateY(0); }
       to { transform: translateY(-18px); }
@@ -118,5 +166,13 @@
   <header>
     <h1>LittleXiaoRan</h1>
   </header>
+  <main>
+    <article class="game-card" aria-labelledby="game-title">
+      <h2 id="game-title">星环突围</h2>
+      <a class="play-link" href="/star-ring-breakout/" aria-label="开始游戏：星环突围">
+        开始游戏 <span aria-hidden="true">→</span>
+      </a>
+    </article>
+  </main>
 </body>
 </html>
