@@ -35,9 +35,6 @@
       min-height: 72px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px 24px;
       padding: 28px clamp(24px, 5vw, 72px) 0;
     }
 
@@ -46,7 +43,7 @@
     .brand strong span { color: var(--mint); }
     .brand > span { color: #64768d; font-size: 11px; letter-spacing: 0.22em; }
 
-    .links { display: flex; align-items: center; gap: 10px; }
+    .links { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
     .links a {
       padding: 6px 12px;
       border: 1px solid rgba(130, 159, 181, 0.18);
@@ -126,11 +123,11 @@
     <div class="brand">
       <strong>Little<span>XiaoRan</span></strong>
       <span>GAME PORTAL</span>
+      <nav class="links" aria-label="外部链接">
+        <a href="https://littlexiaoran.itch.io/" target="_blank" rel="noopener">itch.io</a>
+        <a href="https://github.com/LittleXiaoRan" target="_blank" rel="noopener">GitHub</a>
+      </nav>
     </div>
-    <nav class="links" aria-label="外部链接">
-      <a href="https://littlexiaoran.itch.io/" target="_blank" rel="noopener">itch.io</a>
-      <a href="https://github.com/LittleXiaoRan" target="_blank" rel="noopener">GitHub</a>
-    </nav>
   </header>
   <main>
     <p class="eyebrow">GAMES</p>
