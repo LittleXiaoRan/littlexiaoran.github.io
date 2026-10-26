@@ -35,6 +35,9 @@
       min-height: 72px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px 24px;
       padding: 28px clamp(24px, 5vw, 72px) 0;
     }
 
@@ -42,6 +45,19 @@
     .brand strong { font-size: clamp(26px, 3.4vw, 36px); font-weight: 750; letter-spacing: 0.08em; }
     .brand strong span { color: var(--mint); }
     .brand > span { color: #64768d; font-size: 11px; letter-spacing: 0.22em; }
+
+    .links { display: flex; align-items: center; gap: 10px; }
+    .links a {
+      padding: 6px 12px;
+      border: 1px solid rgba(130, 159, 181, 0.18);
+      border-radius: 8px;
+      color: #8ba1b4;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      transition: color 160ms ease, border-color 160ms ease;
+    }
+    .links a:hover { color: var(--mint); border-color: rgba(100, 251, 210, 0.55); }
+    .links a:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
 
     main {
       padding: 28px clamp(24px, 5vw, 72px) 40px;
@@ -69,7 +85,7 @@
     }
 
     .game-card:hover { transform: translateY(-3px); border-color: rgba(100, 251, 210, 0.55); }
-    .game-card:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; }
+    .card-cover:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; }
 
     .game-swatch {
       display: block;
@@ -84,7 +100,13 @@
     .game-card strong { display: block; font-size: 18px; letter-spacing: 0.04em; }
     .game-en { display: block; margin-top: 4px; color: #64768d; font-size: 10px; letter-spacing: 0.22em; }
     .game-card p { margin: 10px 0 0; color: #8ba1b4; font-size: 12px; line-height: 1.7; }
-    .game-badge { position: absolute; right: 12px; bottom: 10px; color: var(--mint); font-size: 10px; letter-spacing: 0.1em; }
+    .card-cover { position: absolute; inset: 0; border-radius: 12px; }
+    .game-badges { position: absolute; right: 12px; bottom: 10px; display: flex; gap: 12px; z-index: 2; }
+    .game-badge { color: var(--mint); font-size: 10px; letter-spacing: 0.1em; transition: color 160ms ease; }
+    .game-badge:hover { color: #fff; }
+    .game-badge.itch { color: #f5c96b; }
+    .game-badge.itch:hover { color: #ffe3a3; }
+    .game-badge:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
 
     @media (max-width: 760px) {
       .topbar { min-height: 56px; padding: 18px 14px 0; }
@@ -105,17 +127,25 @@
       <strong>Little<span>XiaoRan</span></strong>
       <span>GAME PORTAL</span>
     </div>
+    <nav class="links" aria-label="外部链接">
+      <a href="https://littlexiaoran.itch.io/" target="_blank" rel="noopener">itch.io</a>
+      <a href="https://github.com/LittleXiaoRan" target="_blank" rel="noopener">GitHub</a>
+    </nav>
   </header>
   <main>
     <p class="eyebrow">GAMES</p>
     <section class="games" aria-label="游戏列表">
-      <a class="game-card" href="https://littlexiaoran.github.io/star-ring-breakout/" target="_blank" rel="noopener">
+      <div class="game-card">
         <span class="game-swatch" aria-hidden="true"></span>
         <strong>星环突围</strong>
         <span class="game-en">STAR RING BREAKOUT</span>
         <p>五波进攻 · 随机强化 · 动态首领</p>
-        <span class="game-badge" aria-hidden="true">PLAY ›</span>
-      </a>
+        <a class="card-cover" href="https://littlexiaoran.github.io/star-ring-breakout/" target="_blank" rel="noopener" aria-label="星环突围 网页版"></a>
+        <div class="game-badges">
+          <a class="game-badge" href="https://littlexiaoran.github.io/star-ring-breakout/" target="_blank" rel="noopener">PLAY ›</a>
+          <a class="game-badge itch" href="https://littlexiaoran.itch.io/star-ring-breakout" target="_blank" rel="noopener">ITCH.IO ›</a>
+        </div>
+      </div>
     </section>
   </main>
 </body>
