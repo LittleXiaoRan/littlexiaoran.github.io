@@ -3,176 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b13">
   <title>LittleXiaoRan</title>
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      color-scheme: dark;
+      --bg: #070b13;
+      --line: rgba(156, 183, 211, 0.16);
+      --text: #edf7ff;
+      --muted: #8a9bb0;
+      --mint: #64fbd2;
     }
 
-    html {
-      min-height: 100%;
-      background: #07152d;
-    }
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; width: 100%; height: 100%; }
 
     body {
-      margin: 0;
-      min-height: 100vh;
-      min-height: 100svh;
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(ellipse at 6% 0%, #17487755, transparent 48%),
-        radial-gradient(ellipse at 92% 22%, #49378226, transparent 48%),
-        linear-gradient(145deg, #0b1d3a, #07152d 65%, #0a1833);
-      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      min-height: 100dvh;
+      background: radial-gradient(circle at 50% -20%, #14233b 0, var(--bg) 48%, #05070d 100%);
+      color: var(--text);
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .stars {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      overflow: hidden;
-      pointer-events: none;
+    a { color: inherit; text-decoration: none; }
+
+    .topbar {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      padding: 0 clamp(24px, 5vw, 72px);
     }
 
-    .stars::before,
-    .stars::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 2px;
-      height: 2px;
-      border-radius: 50%;
-      background: #bbdfff;
-      box-shadow:
-        7vw 31vh #bbdfff66, 18vw 62vh #bbdfff44,
-        27vw 19vh #bbdfff55, 36vw 83vh #bbdfff66,
-        43vw 42vh #bbdfff44, 51vw 12vh #bbdfff55,
-        62vw 68vh #bbdfff66, 69vw 29vh #bbdfff44,
-        78vw 88vh #bbdfff55, 86vw 48vh #bbdfff66,
-        94vw 14vh #bbdfff44, 12vw 91vh #bbdfff55;
-      opacity: 0.6;
-      animation: drift 18s ease-in-out infinite alternate;
-    }
-
-    .stars::after {
-      top: 8vh;
-      left: 4vw;
-      width: 1px;
-      height: 1px;
-      opacity: 0.35;
-      animation-duration: 25s;
-      animation-delay: -9s;
-    }
-
-    header {
-      padding: clamp(28px, 5vw, 64px) clamp(24px, 5vw, 72px);
-    }
-
-    h1 {
-      position: relative;
-      width: fit-content;
-      max-width: 100%;
-      margin: 0;
-      font-size: clamp(28px, 5.5vw, 54px);
-      font-weight: 750;
-      line-height: 1.2;
-      letter-spacing: -0.045em;
-      overflow-wrap: anywhere;
-      color: #b6dfff;
-      background: linear-gradient(110deg, #e0f5ff 5%, #89d9ff 40%, #a9a5ff 75%, #c8afff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 22px #649cff38);
-    }
-
-    h1::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 2px;
-      width: 48px;
-      height: 2px;
-      border-radius: 2px;
-      background: linear-gradient(90deg, #79d5ff, #9e8aff55, transparent);
-      box-shadow: 0 0 12px #79d5ff44;
-    }
+    .brand { display: flex; flex-direction: column; gap: 2px; }
+    .brand strong { font-size: clamp(20px, 2.6vw, 26px); font-weight: 750; letter-spacing: 0.08em; }
+    .brand strong span { color: var(--mint); }
+    .brand > span { color: #64768d; font-size: 9px; letter-spacing: 0.22em; }
 
     main {
-      padding: 12px clamp(24px, 5vw, 72px) 64px;
+      padding: 28px clamp(24px, 5vw, 72px) 40px;
+    }
+
+    .eyebrow { margin: 0 0 16px; color: var(--mint); font-size: 9px; font-weight: 700; letter-spacing: 0.25em; }
+
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 320px));
+      gap: 14px;
+      width: 100%;
+      justify-content: start;
     }
 
     .game-card {
-      width: 100%;
-      max-width: 420px;
-      padding: clamp(24px, 4vw, 36px);
-      border: 1px solid #89d9ff33;
-      border-radius: 24px;
-      background: linear-gradient(135deg, #143354d9, #101e38e6);
-      box-shadow: 0 20px 60px #020a1a40;
-    }
-
-    .game-card h2 {
-      margin: 0 0 28px;
-      color: #e0f5ff;
-      font-size: clamp(24px, 4vw, 32px);
-      line-height: 1.4;
-      letter-spacing: 0.06em;
-    }
-
-    .play-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      min-height: 48px;
-      padding: 12px 24px;
-      border: 1px solid #b6e8ff;
+      position: relative;
+      min-height: 148px;
+      padding: 16px;
+      border: 1px solid rgba(130, 159, 181, 0.18);
       border-radius: 12px;
-      color: #07152d;
-      background: linear-gradient(110deg, #a2e2ff, #b8b8ff);
-      font-size: 16px;
-      font-weight: 650;
-      line-height: 1.5;
-      text-decoration: none;
+      background: rgba(17, 28, 43, 0.92);
+      text-align: left;
+      transition: transform 160ms ease, border-color 160ms ease;
     }
 
-    .play-link:hover {
-      background: #d3eeff;
+    .game-card:hover { transform: translateY(-3px); border-color: rgba(100, 251, 210, 0.55); }
+    .game-card:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; }
+
+    .game-swatch {
+      display: block;
+      width: 100%;
+      height: 5px;
+      margin-bottom: 13px;
+      border-radius: 4px;
+      background: var(--swatch, var(--mint));
+      box-shadow: 0 0 12px color-mix(in srgb, var(--swatch, var(--mint)) 40%, transparent);
     }
 
-    .play-link:focus-visible {
-      outline: 3px solid #e0f5ff;
-      outline-offset: 5px;
-    }
+    .game-card strong { display: block; font-size: 15px; letter-spacing: 0.04em; }
+    .game-en { display: block; margin-top: 3px; color: #64768d; font-size: 8px; letter-spacing: 0.22em; }
+    .game-card p { margin: 10px 0 0; color: #8ba1b4; font-size: 10px; line-height: 1.65; }
+    .game-badge { position: absolute; right: 12px; bottom: 10px; color: var(--mint); font-size: 8px; letter-spacing: 0.1em; }
 
-    @keyframes drift {
-      from { transform: translateY(0); }
-      to { transform: translateY(-18px); }
+    @media (max-width: 760px) {
+      .topbar { min-height: 56px; padding: 0 14px; }
+      .brand strong { font-size: 19px; }
+      .brand span { display: none; }
+      main { padding: 20px 14px 32px; }
+      .games { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .stars::before,
-      .stars::after {
-        animation: none;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
-  <div class="stars" aria-hidden="true"></div>
-  <header>
-    <h1>LittleXiaoRan</h1>
+  <header class="topbar">
+    <div class="brand">
+      <strong>Little<span>XiaoRan</span></strong>
+      <span>GAME PORTAL</span>
+    </div>
   </header>
   <main>
-    <article class="game-card" aria-labelledby="game-title">
-      <h2 id="game-title">星环突围</h2>
-      <a class="play-link" href="/star-ring-breakout/" aria-label="开始游戏：星环突围">
-        开始游戏 <span aria-hidden="true">→</span>
+    <p class="eyebrow">GAMES</p>
+    <section class="games" aria-label="游戏列表">
+      <a class="game-card" href="https://littlexiaoran.github.io/star-ring-breakout/" target="_blank" rel="noopener">
+        <span class="game-swatch" aria-hidden="true"></span>
+        <strong>星环突围</strong>
+        <span class="game-en">STAR RING BREAKOUT</span>
+        <p>五波进攻 · 随机强化 · 动态首领</p>
+        <span class="game-badge" aria-hidden="true">PLAY ›</span>
       </a>
-    </article>
+    </section>
   </main>
 </body>
 </html>
