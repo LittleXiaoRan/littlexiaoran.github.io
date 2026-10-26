@@ -35,7 +35,7 @@
       min-height: 72px;
       display: flex;
       align-items: center;
-      padding: 0 clamp(24px, 5vw, 72px);
+      padding: 28px clamp(24px, 5vw, 72px) 0;
     }
 
     .brand { display: flex; flex-direction: column; gap: 2px; }
@@ -87,7 +87,7 @@
     .game-badge { position: absolute; right: 12px; bottom: 10px; color: var(--mint); font-size: 10px; letter-spacing: 0.1em; }
 
     @media (max-width: 760px) {
-      .topbar { min-height: 56px; padding: 0 14px; }
+      .topbar { min-height: 56px; padding: 18px 14px 0; }
       .brand strong { font-size: 24px; }
       .brand span { display: none; }
       main { padding: 20px 14px 32px; }
